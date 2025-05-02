@@ -1,0 +1,29 @@
+namespace: evemapper
+
+domain: your-sub.domain
+email: your@email.com
+
+image:
+  repository: ghcr.io/pfh59/eve-whmapper
+  tag: "1.1"
+
+postgresql:
+  user: youruser
+  password: yourpass
+  db: yourdb
+  nodePort: 31252
+
+redis:
+  nodePort: 31253
+
+cert:
+  issuerName: letsencrypt-evemapper
+  secretName: tls-evemapper
+
+config:
+  EveSSO__ClientId: your-client-id
+  EveSSO__Secret: your-client-secret
+
+secrets:
+  POSTGRES_PASSWORD: super-secret-password
+  EVE_CLIENT_SECRET: your-client-secret

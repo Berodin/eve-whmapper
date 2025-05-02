@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evemapper-app
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: evemapper-app
+  template:
+    metadata:
+      labels:
+        component: evemapper-app
+    spec:
+      containers:
+        - name: evemapper-app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          envFrom:
+            - configMapRef:
+                name: evemapper-config-map
+            - secretRef:
+                name: evemapper-secrets

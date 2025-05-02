@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: evemapper-config-map
+  namespace: {{ .Values.namespace }}
+data:
+  DOMAIN: {{ .Values.domain }}
+  POSTGRES_DB: {{ .Values.postgresql.db }}
+  POSTGRESQL_USERNAME: {{ .Values.postgresql.user }}
+  POSTGRESQL_PASSWORD: {{ .Values.postgresql.password }}
+  POSTGRESQL_DATABASE: {{ .Values.postgresql.db }}
+  EveSSO__ClientId: {{ .Values.config.EveSSO__ClientId }}
+  EveSSO__Secret: {{ .Values.config.EveSSO__Secret }}
+  ConnectionStrings__DatabaseConnection: "server={{ .Values.domain }};port={{ .Values.postgresql.nodePort }};database={{ .Values.postgresql.db }};User Id={{ .Values.postgresql.user }};Password={{ .Values.postgresql.password }}"
+  ConnectionStrings__RedisConnection: "{{ .Values.domain }}:{{ .Values.redis.nodePort }}"
+  Logging__LogLevel__Default: Warning
+  Logging__LogLevel__Microsoft.EntityFrameworkCore.Database.Command: Warning
